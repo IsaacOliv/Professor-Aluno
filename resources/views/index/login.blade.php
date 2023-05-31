@@ -1,41 +1,33 @@
-@extends('layouts.account')
+@extends('layouts.accountLoginRegister')
 
+@section('account')
+    <div class="limiter">
+        <div class="container-login100" style="background-image: url('{{ asset('images/bg-01.jpg') }}');">
+            <div class="wrap-login100 p-t-30 p-b-50">
+                <span class="login100-form-title p-b-41">
+                    Teacher login
+                </span>
 
-<style>
-    .botoes a {
-        text-decoration: none;
-        padding: 15px 75px;
-        font-size: 30px;
-        color: #ffffff;
-        font-family: arial;
-        background: #2981bc;
-        border-radius: 2px;
-    }
+                <form class="login100-form validate-form p-b-33 p-t-5" action="{{ route('logar') }}" method="post">
+                    @csrf
+                    <div class="wrap-input100 validate-input" data-validate="Enter email">
+                        <input class="input100" type="text" name="email" placeholder="email">
+                        <span class="focus-input100" data-placeholder="&#xe82a;"></span>
+                    </div>
 
-    a.a1 {
-        background: #34495e;
-    }
-    .user_type{
-        height: 45px;
-        width: 200px;
-        font-size: 20px;
-        background: none;
-        border: 1px solid #3498db;
-        border-radius: 2px;
-        padding: 0 10px;
-        margin-left: 35px;
-        outline: none;
-        color: #7dbde8;
-        margin-top: 2%;
+                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+                        <input class="input100" type="password" name="password" placeholder="Password">
+                        <span class="focus-input100" data-placeholder="&#xe80f;"></span>
+                    </div>
 
-    }
-</style>
-@section('login')
-    <div class="header">Login</div>
-    <form action="{{ route('logar') }}" method="post">
-        @csrf
-        <input class="email" name="email" type="text" id="email" placeholder="Email">
-        <input class="password" name="password" id="password" type="password" placeholder="Senha">
-        <button class="button" type="submit">Entrar</button>
-    </form>
+                    <div class="container-login100-form-btn m-t-32">
+                        <button class="login100-form-btn" type="submit">
+                            Login
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection

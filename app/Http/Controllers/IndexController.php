@@ -10,8 +10,13 @@ class IndexController extends Controller
     public function index()
     {
 
-
-        $user = Auth::guard('teachers')->user();
+        if (Auth::guard('teachers')->user()) {
+            $user = Auth::guard('teachers')->user();
+        }
+        if (Auth::guard('students')->user()) {
+            $user = Auth::guard('students')->user();
+        }
+        
         return view('index.index', compact('user'));
     }
 }

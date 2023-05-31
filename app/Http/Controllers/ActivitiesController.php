@@ -50,7 +50,12 @@ class ActivitiesController extends Controller
     }
     public function show($id)
     {
-        $user = Auth::guard('teachers')->user();
+        if (Auth::guard('teachers')->user()) {
+            $user = Auth::guard('teachers')->user();
+        }
+        if (Auth::guard('students')->user()) {
+            $user = Auth::guard('students')->user();
+        }
 
         $activities = Activities::find($id);
 
@@ -62,7 +67,12 @@ class ActivitiesController extends Controller
     public function showWhere($id)
     {
 
-        $user = Auth::guard('teachers')->user();
+        if (Auth::guard('teachers')->user()) {
+            $user = Auth::guard('teachers')->user();
+        }
+        if (Auth::guard('students')->user()) {
+            $user = Auth::guard('students')->user();
+        }
         
         $activities = Activities::with('discipline')->where('discipline_id', $id)->paginate(8);
 

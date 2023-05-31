@@ -17,17 +17,19 @@ class TeachersController extends Controller
         $teacher = Teachers::find($id);
 
         $user = Auth::guard('teachers')->user();
-        
+
         return view('professor.info', compact('user', 'teacher'));
     }
+
+
+
+    //Criar conta do aluno
     public function studentRegister()
     {
-
         $user = Auth::guard('teachers')->user();
-
         return view('professor.studentRegister', compact('user'));
     }
-    public function studentStore(RegisterRequest $request)
+    public function studentStore(Request $request)
     {
         $students = [
             'name' => $request->name,
@@ -35,7 +37,6 @@ class TeachersController extends Controller
             'password' => Hash::make($request->password),
             'status' => (int)$request->status,
         ];
-
         
         if ($students) {
             Students::create($students);

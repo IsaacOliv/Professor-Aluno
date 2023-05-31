@@ -6,14 +6,16 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AuthenticateTeacher
+class AuthenticateStudents
 {
     
     public function handle(Request $request, Closure $next)
     {
 
         if (Auth::guard('students')->check() == false) {
-            return redirect()->route('login');
+            if (Auth::guard('teachers')->check() == false) {
+            }
+            return redirect()->route('students.login');
         }
         return $next($request);
     }

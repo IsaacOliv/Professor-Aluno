@@ -31,10 +31,24 @@ class AccountTeachers extends Controller
         }
         return redirect()->back()->withErrors(['message' => 'Credenciais inválidas']);
     }
-    public function logout()
+    
+    public function logout(Request $request)
     {
-        Auth::guard("teachers")->logout();
-        return redirect()->route('login');
+        $teacher = Auth::guard("teachers");
+        $student = Auth::guard("students");
+
+        if ($teacher) {
+            $teacher->logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+            return redirect()->route('login');
+        }
+        if ($student) {
+            $student->logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+            return redirect()->route('students.login');
+        } 
     }
 
 

@@ -14,7 +14,12 @@ class DisciplinesController extends Controller
     {
         // $disciplines = $disciplines->paginate(8);
         
-        $user = Auth::guard('teachers')->user();
+        if (Auth::guard('teachers')->user()) {
+            $user = Auth::guard('teachers')->user();
+        }
+        if (Auth::guard('students')->user()) {
+            $user = Auth::guard('students')->user();
+        }
         
         // return view('disciplines.index', compact('user', 'disciplines'));
         return view('disciplines.index', compact('user'));
@@ -34,7 +39,12 @@ class DisciplinesController extends Controller
     public function edit(Disciplines $disciplines, $id)
     {
         $disciplines = $disciplines->find($id);
-        $user = Auth::guard('teachers')->user();
+        if (Auth::guard('teachers')->user()) {
+            $user = Auth::guard('teachers')->user();
+        }
+        if (Auth::guard('students')->user()) {
+            $user = Auth::guard('students')->user();
+        }
 
         return  view('disciplines.edit', compact('user', 'disciplines'));
     }
