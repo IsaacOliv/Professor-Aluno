@@ -80,4 +80,5 @@ class DisciplinesController extends Controller
         return response()->json($data);
     }
 
+
 }

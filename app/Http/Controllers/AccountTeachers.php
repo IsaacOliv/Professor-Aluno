@@ -41,14 +41,14 @@ class AccountTeachers extends Controller
             $teacher->logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
-            return redirect()->route('login');
+            return redirect()->route('account');
         }
         if ($student) {
-            $student->logout();
+            $teacher->logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
-            return redirect()->route('students.login');
-        } 
+            return redirect()->route('account');
+        }
     }
 
 

@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('activities_responses', function (Blueprint $table) {
             $table->id();
-            $table->enum("check", ["0", "1"]);
-            $table->float("note");
-            $table->string("filepath");
+            $table->boolean("check")->nullable();
+            $table->float("note")->nullable();
+            $table->string("filepath")->nullable();
             $table->text("description");
             $table->foreignId("activity_id")
             ->constrained("activities", "id");

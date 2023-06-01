@@ -31,20 +31,30 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ route('index') }}">Inicio</a>
                         </li>
+                        
                         {{-- parte do professor --}}
 
+                        @if (Auth::guard('students')->user())
                         <li class="nav-item">
                             <a class="nav-link " aria-current="page"
-                                href="{{ route('activities.index') }}">Atividade</a>
+                                href="/">Atividades enviadas</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link " aria-current="page"
-                                href="{{ route('disciplines.index') }}">Disciplinas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " aria-current="page" href="{{ route('create.student') }}">Registrar
-                                Aluno</a>
-                        </li>
+                        @endif
+                        @if (Auth::guard('teachers')->user())
+                            <li class="nav-item">
+                                <a class="nav-link " aria-current="page"
+                                    href="{{ route('activities.index') }}">Atividade</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link " aria-current="page"
+                                    href="{{ route('disciplines.index') }}">Disciplinas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " aria-current="page" href="{{ route('create.student') }}">Registrar
+                                    Aluno</a>
+                            </li>
+                        @endif
 
                         {{-- fim da parte do professor  --}}
 
@@ -54,16 +64,25 @@
                             data-bs-auto-close="false" aria-expanded="false">
                             {{ $user->name }}
                         </button>
+
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('teacher.info', $user->id) }}">Detalhes da
-                                    conta</a></li>
-                            {{-- parte do professor --}}
-                            <li><a class="dropdown-item" href="#">Atualizar conta</a></li>
-                            <li><a class="dropdown-item" href="#">Ver atividades</a></li>
-                            {{-- fim da parte do professor  --}}
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
+                            @if (Auth::guard('teachers')->user())
+                                <li><a class="dropdown-item" href="{{ route('teacher.info', $user->id) }}">
+                                        Detalhes da conta</a></li>
+                                {{-- parte do professor --}}
+                                <li><a class="dropdown-item" href="#">Atualizar conta</a></li>
+                                <li><a class="dropdown-item" href="#">Ver atividades</a></li>
+                                {{-- fim da parte do professor  --}}
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                            @else
+                                <li><a class="dropdown-item" href="{{ route('students.info', $user->id) }}">
+                                        Detalhes da conta</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                            @endif
                             <li><a class="dropdown-item" href="{{ route('logout') }}">Sair</a></li>
                         </ul>
                     </div>

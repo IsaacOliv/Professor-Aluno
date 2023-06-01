@@ -29,11 +29,6 @@ class AccountStudents extends Controller
         }
         return redirect()->route('students.login')->withErrors(['message' => 'Credenciais inválidas']);
     }
-    public function logout()
-    {
-        Auth::guard("students")->logout();
-        return redirect()->route('students.login');
-    }
 
 
 

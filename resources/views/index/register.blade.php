@@ -26,11 +26,14 @@
 
                     <div class="container-login100-form-btn m-t-32">
                         <button class="login100-form-btn" type="submit">
-                            Login
+                            Register
                         </button>
                     </div>
 
                 </form>
+                <div class="container-login100-form-btn m-t-32">
+                    <a href="{{route('login')}}" class="voltar" >Voltar</a>
+                </div>
             </div>
         </div>
     </div>

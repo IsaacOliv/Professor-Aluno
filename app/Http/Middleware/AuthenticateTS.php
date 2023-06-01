@@ -8,15 +8,15 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthenticateTS
 {
-    
+
     public function handle(Request $request, Closure $next)
     {
-
-        if (Auth::guard('students')->check() == false) {
-            if (Auth::guard('teachers')->check() == false) {
-            }
-            return redirect()->route('students.login');
+        if (Auth::guard('teachers')->check() == true) {
+            return $next($request);
         }
-        return $next($request);
+        if (Auth::guard('students')->check() == true) {
+            return $next($request);
+        }
+        return redirect()->route('students.login');
     }
 }

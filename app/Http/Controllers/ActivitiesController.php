@@ -13,7 +13,14 @@ class ActivitiesController extends Controller
     public function index()
     {
         $activities = Activities::with('discipline')->paginate(8);
-        $user = Auth::guard('teachers')->user();
+
+        if (Auth::guard('teachers')->user()) {
+            $user = Auth::guard('teachers')->user();
+        }
+        if (Auth::guard('students')->user()) {
+            $user = Auth::guard('students')->user();
+        }
+
 
         return view('atividades.index', compact('user', 'activities'));
     }
@@ -62,7 +69,7 @@ class ActivitiesController extends Controller
         if ($activities) {
             return view('atividades.show', compact('user', 'activities'));
         }
-        return redirect()->back()->with('erro', 'Não foi possivel localizar a atividade');
+        return redirect()->back()->with('erro', 'Não foi possivel localizar atividades');
     }
     public function showWhere($id)
     {

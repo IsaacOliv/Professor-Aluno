@@ -5,7 +5,7 @@
         <div class="container-login100" style="background-image: url('{{ asset('images/bg-01.jpg') }}');">
             <div class="wrap-login100 p-t-30 p-b-50">
                 <span class="login100-form-title p-b-41">
-                    Teacher login
+                    Professor login
                 </span>
 
                 <form class="login100-form validate-form p-b-33 p-t-5" action="{{ route('logar') }}" method="post">
@@ -27,6 +27,9 @@
                     </div>
 
                 </form>
+                <div class="container-login100-form-btn m-t-32">
+                    <a href="{{route('account')}}" class="voltar" >Voltar</a>
+                </div>
             </div>
         </div>
     </div>

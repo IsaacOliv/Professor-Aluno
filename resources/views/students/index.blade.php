@@ -11,7 +11,8 @@
                             <h5 class="card-title">{{ $discipline->name }}</h5>
 
                             <p class="card-text mt-3">Atividades: </p>
-                            <p><a href="{{route('students.activities', $discipline->id)}}">Ver atividades</a></p>
+                            <p><a href="{{route('students.activities', $discipline->id)}}">Ver atividades</a>
+                                </p>
                         </div>
                     </div>
                 </ul>

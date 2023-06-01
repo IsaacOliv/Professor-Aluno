@@ -147,6 +147,7 @@ iframe {
   margin: 0 auto;
 }
 
+
 .container-login100 {
   width: 100%;  
   min-height: 100vh;
@@ -475,5 +476,21 @@ iframe {
   }
 }
 
+
+
+
+.voltar{
+ 
+  font-family: Ubuntu-Bold;
+  font-size: 18px;
+  color: #d41872;
+  line-height: 1.2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  height: 42px;
+  border-radius: 21px;
+}
 
 
