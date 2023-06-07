@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\AccountStudents;
-use App\Http\Controllers\AccountTeachers;
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ActivitiesController;
 use App\Http\Controllers\ActivitiesResponsesController;
 use App\Http\Controllers\DisciplinesController;
@@ -15,23 +14,21 @@ use Illuminate\Support\Facades\Route;
 Route::controller(IndexController::class)->group(function () {
     Route::get('/account', 'account')->name('account');
 });
-Route::controller(AccountTeachers::class)->group(function () {
-    //professor 
-    Route::get('/teacher/login', 'login')->name('login');
-    Route::post('/logar', 'logar')->name('logar');
+Route::controller(AccountController::class)->group(function () {
+    //Teacher
+    Route::get('/teacher/login', 'loginTeacher')->name('login');
+    Route::post('/logar', 'logarTeacher')->name('logar');
+    Route::get('/teacher/register', 'registerTeacher')->name('register');
+    Route::post('/register', 'createTeacher')->name('create');
+
+    
+    //student
+    Route::get('/students/login', 'loginStudent')->name('students.login');
+    Route::post('/students/logar', 'logarStudent')->name('students.authenticate');
+
+
+    //logout Teacher/Student
     Route::get('/logout', 'logout')->name('logout');
-    Route::get('/teacher/register', 'register')->name('register');
-    Route::post('/register', 'create')->name('create');
-    //professor 
-
-});
-Route::controller(AccountStudents::class)->group(function () {
-    //aluno
-    Route::get('/students/login', 'login')->name('students.login');
-    Route::post('/students/logar', 'logar')->name('students.authenticate');
-    //Aluno utiliza logout de accountTeachers para facilitar
-    //aluno
-
 });
 
 // ver kernel.php para middleware
@@ -53,7 +50,11 @@ Route::middleware(['authTS'])->group(function () {
         Route::get('/students/{id}', 'info')->name('students.info');
         Route::get('/students/disciplines/{id}/activities', 'activities')->name('students.activities');
         Route::get('/students/disciplines/activities/{id}/responses', 'responses')->name('students.responses');
-        Route::post('/students/disciplines/activities/responses', 'responsesStore')->name('students.responsesStore');
+        Route::post('/students/disciplines/activities/responses', 'store')->name('students.store');
+        Route::get('/students/activities/open', 'open')->name('students.activities.open');
+        Route::get('/students/activities/edit/{id}', 'edit')->name('students.edit');
+        Route::get('/students/activities/where/{id}', 'editWhere')->name('students.edit.where');
+        Route::put('/students/activities/update/{id}', 'update')->name('students.activitie.update');
     });
 });
 
@@ -73,6 +74,11 @@ Route::middleware(['teachers'])->group(function () {
         Route::get('/teacher/{id}', 'info')->name('teacher.info');
         Route::get('/teatcher/student-register', 'studentRegister')->name('create.student');
         Route::post('/teatcher/student-register', 'studentStore')->name('store.student');
+        Route::get('/teacher/show/students', 'studentsShow')->name('teacher.show.student');
+        Route::get('/teacher/student/edit/{id}', 'studentEdit')->name('teacher.edit.student');
+        Route::put('/teacher/student/edit/{id}/update', 'studentUpdate')->name('teacher.update.student');
+        Route::put('/teacher/student/edit/{id}/status', 'disableStudent')->name('teacher.update.status');
+
     });
     Route::controller(ActivitiesController::class)->group(function () {
         Route::get('/activities/create/{id}', 'create')->name('activities.create');

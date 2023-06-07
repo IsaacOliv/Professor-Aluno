@@ -15,14 +15,13 @@
                     <ul>
                         <div class="card mt-5" id="card" style="width: 18rem;">
                             <div class="card-body">
-                                <h5 class="card-title">{{ $item->discipline->name }}</h5>
+                                <h5 class="card-title">{{$item->discipline->name}}</h5>
                                 <h6 class="card-subtitle mb-2 text-body-secondary">{{ $item->name }}</h6>
                                 <p class="card-text">{{ $item->description }}</p>
-                                <a href="{{ route('activities.show', $item->id) }}" class="card-link">Ver atividade</a>
-                                <br>
-                                <a class="mt-2" href="{{ route('students.responses', $item->id) }}">Responder
-                                    atividade</a>
+                                <p class="card-title">Ultimo envio: {{date( 'd/m', strtotime($item->updated_at))}}</p>
 
+                                <a href="{{ route('students.edit', $item->id) }}" class="card-link">Ver resposta</a>
+                                <br>
                             </div>
                     </ul>
                 </div>

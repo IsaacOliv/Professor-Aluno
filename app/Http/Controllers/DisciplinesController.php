@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\DisciplinesStoreRequest;
-use App\Models\Activities;
 use App\Models\Disciplines;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,16 +11,13 @@ class DisciplinesController extends Controller
 {
     public function index(Disciplines $disciplines)
     {
-        // $disciplines = $disciplines->paginate(8);
-        
         if (Auth::guard('teachers')->user()) {
             $user = Auth::guard('teachers')->user();
         }
         if (Auth::guard('students')->user()) {
             $user = Auth::guard('students')->user();
         }
-        
-        // return view('disciplines.index', compact('user', 'disciplines'));
+
         return view('disciplines.index', compact('user'));
     }
     public function allData()
@@ -34,7 +30,7 @@ class DisciplinesController extends Controller
         $data = Disciplines::create([
             'name' => $request->name,
         ]);
-            return response()->json($data);
+        return response()->json($data);
     }
     public function edit(Disciplines $disciplines, $id)
     {
@@ -79,6 +75,4 @@ class DisciplinesController extends Controller
         $data = Disciplines::findOrFail($id)->delete();
         return response()->json($data);
     }
-
-
 }

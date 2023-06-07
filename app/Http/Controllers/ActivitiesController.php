@@ -65,9 +65,9 @@ class ActivitiesController extends Controller
         }
 
         $activities = Activities::find($id);
-
+        $activities2 = Activities::with('discipline')->where('discipline_id', $id)->paginate(8);
         if ($activities) {
-            return view('atividades.show', compact('user', 'activities'));
+            return view('atividades.show', compact('user', 'activities', 'activities2'));
         }
         return redirect()->back()->with('erro', 'Não foi possivel localizar atividades');
     }

@@ -29,4 +29,8 @@ class Activities extends Model
     {
         return $this->belongsTo(Disciplines::class, 'discipline_id', 'id');
     }
+    public function activitieresponse()
+    {
+        return $this->hasMany(Activities_responses::class);
+    }
 }

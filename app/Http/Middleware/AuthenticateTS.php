@@ -11,10 +11,10 @@ class AuthenticateTS
 
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::guard('teachers')->check() == true) {
+        if (Auth::guard('teachers')->check() == true ) {
             return $next($request);
         }
-        if (Auth::guard('students')->check() == true) {
+        if (Auth::guard('students')->check() == true ) {
             return $next($request);
         }
         return redirect()->route('students.login');

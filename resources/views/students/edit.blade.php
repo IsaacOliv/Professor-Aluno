@@ -2,18 +2,12 @@
 
 
 @section('conteudo')
-    @if ($errors->any())
-        @foreach ($errors->all() as $error)
-            {{ $error }}
-        @endforeach
-    @endif
     {{-- enctype="multipart/form-data" --}}
-    <form action="{{ route('students.store') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('students.activitie.update', $activitie->id) }}" method="post" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
         <div class="mb-3 mt-3">
-            <label for="exampleInputPassword1" class="form-label">Titulo</label>
-            <label for="exampleInputPassword1" class="form-control">{{ $activities->name }}</label>
-            <input type="hidden" class="form-control" name="activity_id" value="{{ $activities->id }}">
+            <input type="hidden" class="form-control" name="activity_id" value="{{ $activitie->activity_id }}">
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Aluno</label>
@@ -23,12 +17,18 @@
         <div class="mb-3">
             <input type="hidden" class="form-control" name="check" value="0">
         </div>
+        
+        @if ($activitie->filepath)
+            <a class="btn btn-lg btn-primary mb-3" href="{{ url("storage/{$activitie->filepath}") }}" target="_blank">
+                Baixar
+                Arquivo</a>
+        @endif
+
         <div class="mb-3">
-            <label for="formFile" class="form-label">Arquivo</label>
             <input class="form-control" name="filepath" type="file">
         </div>
         <label for="exampleInputPassword1">Descrição</label>
-        <textarea class="mt-2" name="description" id="trumbowyg-demo" cols="30" rows="10"></textarea>
+        <textarea class="mt-2" name="description" id="trumbowyg-demo" cols="30" rows="10">{{ $activitie->description }}</textarea>
 
         <button class="btn btn-primary mt-2">Submit</button>
     </form>

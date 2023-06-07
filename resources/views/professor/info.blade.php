@@ -1,25 +1,32 @@
 @extends('layouts.navbar')
 
 @section('conteudo')
-
-<div class="container mt-4  bg-dark-subtle" style="width: 70%">
-   <h4 > Informaçoes da conta</h4>
-
-    <ul>
-        <li>
-            nome: {{$user->name}}
-        </li>
-        <li>
-            email: {{$user->email}}
-        </li>
-        <li>
-            Disciplinas vinculadas:
-        </li>
-        <li>
-            atividades criadas: 
-        </li>
-    </ul>
-
-</div>
-
+    <div class="card mt-3">
+        <div class="card-header">
+            Detalhes da conta <button class="btn btn-warning btn-sm" id="editarStudent">editar</button>
+        </div>
+        <div class="card-body">
+            <form action="/" method="post">
+                @method('PUT')
+                @csrf
+                <ul>
+                    <li>
+                        <label for="exampleInputPassword1" class="form-label">Nome:</label>
+                        <input type="text" id="editName" value="{{ $user->name }}" disabled>
+                    </li>
+                    <li>
+                        <label for="exampleInputPassword1" class="form-label">Email:</label>
+                        <input type="text" id="editEmail" value="{{ $user->email }}" disabled>
+                    </li>
+                    <li class="mb-2">
+                        Disciplinas vinculadas:
+                    </li>
+                    <li>
+                        atividades criadas:
+                    </li>
+                </ul>
+                <a href="#" class="btn btn-primary btn-sm">Confirmar</a>
+            </form>
+        </div>
+    </div>
 @endsection

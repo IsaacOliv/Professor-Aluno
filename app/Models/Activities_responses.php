@@ -28,6 +28,6 @@ class Activities_responses extends Model
     }
     public function student()
     {
-        return $this->hasMany(Students::class);
+        return $this->belongsTo(Students::class);
     }
 }

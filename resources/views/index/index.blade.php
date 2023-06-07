@@ -12,6 +12,8 @@
 
                             <p class="card-text mt-3">Atividades: </p>
                             <p><a href="{{route('students.activities', $discipline->id)}}">Ver atividades</a></p>
+                            <a class="mt-2" href="{{ route('students.edit.where', $discipline->id) }}">Atividades
+                                respondidas</a>
                         </div>
                     </div>
                 </ul>

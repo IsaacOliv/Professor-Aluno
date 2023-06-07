@@ -11,7 +11,7 @@
                 nome: {{$user->name}}
             </li>
             <li class="mt-2">
-                email: {{$user->email}}
+                email: {{$user->email}} 
             </li>
             <li class="mt-2">
                 atividades respondidas: 
@@ -24,7 +24,7 @@
                 @endif
             </li>
         </ul>
-      <a href="#" class="btn btn-primary">Editar</a>
+      <a href="/" class="btn btn-primary">Editar</a>
     </div>
   </div>
 @endsection

@@ -93,22 +93,22 @@ function createData() {
         }
     });
 }
-function updateData(id){
-    var id = $("#id").val();
-    var name = $("#name").val();
-    $.ajax({
-        type: "POST",
-        dataType: "json",
-        data: {name:name},
-        url: "/disciplines/updateData/"+id,
-        success:function(data){
-            console.log(data);
-        },
-        error:function(data){
-            console.log("deu erro");
-        }
-    })
-}
+// function updateData(id){
+//     var id = $("#id").val();
+//     var name = $("#name").val();
+//     $.ajax({
+//         type: "POST",
+//         dataType: "json",
+//         data: {name:name},
+//         url: "/disciplines/updateData/"+id,
+//         success:function(data){
+//             console.log(data);
+//         },
+//         error:function(data){
+//             console.log("deu erro");
+//         }
+//     })
+// }
 const token = $("#_token").val();
 
 function deleteData(id){
@@ -227,6 +227,45 @@ function deleteData(id){
             }
           })
         }
+        //---------------------------------------Editar conta do estudante-------------------------------------------------
+        
+    $("#editarStudent").click(function(event){
+        $("#editName").removeAttr('disabled');
+        $("#editEmail").removeAttr('disabled');
+     });
+
+        //---------------------------------------Alterar status da conta do estudante-------------------------------------------------
 
 
+function studentDisable(id) { 
 
+    $.ajax({
+        type: "put",
+        dataType: "json",
+        data: {status:2},
+        url: `/teacher/student/edit/${id}/status`,
+        success: function (data) {
+            console.log('Ativado');
+            location.reload();
+        },
+        error:function(error){
+            console.log(error);
+        },
+    });
+ }
+ function studentActive(id) { 
+
+    $.ajax({
+        type: "put",
+        dataType: "json",
+        data: {status:1},
+        url: `/teacher/student/edit/${id}/status`,
+        success: function (data) {
+            console.log('desativado');
+            location.reload();
+        },
+        error:function(error){
+            console.log(error);
+        },
+    });
+ }
