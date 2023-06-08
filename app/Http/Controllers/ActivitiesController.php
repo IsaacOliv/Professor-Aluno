@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ActivitiesRequest;
+use App\Http\Requests\ResponseActivitiesCheck;
 use App\Models\Activities;
+use App\Models\Activities_responses;
 use App\Models\Disciplines;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -100,5 +102,24 @@ class ActivitiesController extends Controller
 
         }
         
+    }
+    public function check($id)
+    {
+        $user = Auth::guard('teachers')->user();
+        $activities = Activities_responses::with('activity')->where('activity_id', $id)->where('check', '0')->paginate(8);
+        // dd($activities);
+        return view('professor.check', compact('user','activities'));
+    }
+    public function avaliate($id)
+    {
+        $user = Auth::guard('teachers')->user();
+        $activities = Activities_responses::with('student')->findOrFail($id);
+        return view('professor.avaliate', compact('user','activities'));
+    }
+    public function activitieAvaliate(ResponseActivitiesCheck $request, $id)
+    {
+        $responses = $request->all();
+        Activities_responses::find($id)->update($responses);
+        return redirect()->back();
     }
 }

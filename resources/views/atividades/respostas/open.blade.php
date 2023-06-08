@@ -4,22 +4,20 @@
 @section('conteudo')
     <div class="container row mt-5">
         <div class="container col-md-2">
-            <button class="btn btn-secondary" disabled>Atividades</button>
+            <button class="btn btn-secondary ms-5" disabled>Atividades</button>
         </div>
 
         <div class="row">
 
 
-            @foreach ($visual as $item)
+            @foreach ($final as $item)
                 <div class="col-md-3" id="card">
                     <ul>
                         <div class="card mt-5" id="card" style="width: 18rem;">
                             <div class="card-body">
-                                <h5 class="card-title">{{$item->discipline->name}}</h5>
-                                <h6 class="card-subtitle mb-2 text-body-secondary">{{ $item->name }}</h6>
-                                <p class="card-text">{{ $item->description }}</p>
-                                <p class="card-title">Ultimo envio: {{date( 'd/m', strtotime($item->updated_at))}}</p>
-
+                                <h6 class="card-subtitle mb-2 text-body-secondary">Titulo: {{ $item->activity->name }}</h6>
+                                <p class="card-title">Ultimo envio: {{ date('d/m', strtotime($item->updated_at)) }}</p>
+                                <p class="card-title">Hora do envio: {{ date('H:i:s', strtotime($item->updated_at)) }}</p>
                                 <a href="{{ route('students.edit', $item->id) }}" class="card-link">Ver resposta</a>
                                 <br>
                             </div>
@@ -28,7 +26,7 @@
             @endforeach
         </div>
         <div>
-            {{ $visual->links() }}
+            {{ $final->links() }}
         </div>
     </div>
 @endsection

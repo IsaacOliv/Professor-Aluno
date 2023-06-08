@@ -48,6 +48,8 @@ Route::middleware(['authTS'])->group(function () {
     });
     Route::controller(StudentsController::class)->group(function () {
         Route::get('/students/{id}', 'info')->name('students.info');
+    });
+    Route::controller(ActivitiesResponsesController::class)->group(function(){
         Route::get('/students/disciplines/{id}/activities', 'activities')->name('students.activities');
         Route::get('/students/disciplines/activities/{id}/responses', 'responses')->name('students.responses');
         Route::post('/students/disciplines/activities/responses', 'store')->name('students.store');
@@ -56,6 +58,7 @@ Route::middleware(['authTS'])->group(function () {
         Route::get('/students/activities/where/{id}', 'editWhere')->name('students.edit.where');
         Route::put('/students/activities/update/{id}', 'update')->name('students.activitie.update');
     });
+    
 });
 
 Route::middleware(['teachers'])->group(function () {
@@ -84,9 +87,8 @@ Route::middleware(['teachers'])->group(function () {
         Route::get('/activities/create/{id}', 'create')->name('activities.create');
         Route::post('/activities/store', 'store')->name('activities.store');
         Route::delete('/activities/destroy/{id}', 'deleteActivitie')->name('activities.destroy');
+        Route::get('/activities/check/{id}','check')->name('activities.check');
+        Route::get('/activities/check/avaliate/{id}', 'avaliate')->name('teacher.avaliate');
+        Route::put('/activities/check/avaliate/avaliate/{id}', 'activitieAvaliate')->name('teacher.avaliate.activitie');
     });
 });
-// Route::controller(ActivitiesResponsesController::class)->group(function(){
-//     Route::get('/', '*');
-//     Route::post('/', '*');
-// });

@@ -25,7 +25,7 @@
                         atividades criadas:
                     </li>
                 </ul>
-                <a href="#" class="btn btn-primary btn-sm">Confirmar</a>
+                <button class="btn btn-primary btn-sm">Confirmar</button>
             </form>
         </div>
     </div>

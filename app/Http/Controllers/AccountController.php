@@ -106,16 +106,15 @@ class AccountController extends Controller
         $teacher = Auth::guard("teachers");
         $student = Auth::guard("students");
 
+        $teacher->logout();
+        $student->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
         if ($teacher) {
-            $teacher->logout();
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
             return redirect()->route('account');
         }
         if ($student) {
-            $student->logout();
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
             return redirect()->route('account');
         }
     }

@@ -47,7 +47,7 @@ class TeachersController extends Controller
     {
         $user = Auth::guard('teachers')->user();
 
-        $students = Students::paginate(20);
+        $students = Students::orderBy('status', 'ASC')->paginate(20);
 
         return view('professor.showStudents', compact('user', 'students'));
     }
