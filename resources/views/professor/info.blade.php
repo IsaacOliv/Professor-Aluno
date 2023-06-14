@@ -6,7 +6,7 @@
             Detalhes da conta <button class="btn btn-warning btn-sm" id="editarStudent">editar</button>
         </div>
         <div class="card-body">
-            <form action="/" method="post">
+            <form action="" method="post">
                 @method('PUT')
                 @csrf
                 <ul>
@@ -18,11 +18,8 @@
                         <label for="exampleInputPassword1" class="form-label">Email:</label>
                         <input type="text" id="editEmail" value="{{ $user->email }}" disabled>
                     </li>
-                    <li class="mb-2">
-                        Disciplinas vinculadas:
-                    </li>
                     <li>
-                        atividades criadas:
+                        atividades criadas:{{ $atividades }}
                     </li>
                 </ul>
                 <button class="btn btn-primary btn-sm">Confirmar</button>

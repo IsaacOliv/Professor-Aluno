@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\StudentStatusRequest;
 use App\Http\Requests\StudentUpdateRequest;
+use App\Models\Activities;
 use App\Models\Students;
 use App\Models\Teachers;
 use Illuminate\Http\Request;
@@ -16,11 +17,12 @@ class TeachersController extends Controller
 {
     public function info(Request $request, $id)
     {
-        $teacher = Teachers::find($id);
-
+        
         $user = Auth::guard('teachers')->user();
 
-        return view('professor.info', compact('user', 'teacher'));
+        $teacher = Teachers::find($id);
+        $atividades = Activities::where('teatcher_id', $user->id)->count();
+        return view('professor.info', compact('user', 'teacher', 'atividades'));
     }
     //Criar conta do aluno
     public function studentRegister()

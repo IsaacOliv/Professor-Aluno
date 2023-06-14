@@ -11,6 +11,7 @@ class Activities_responses extends Model
 
     protected $table = 'activities_responses';
     protected $fillable = [
+
         'check',
         'note',
 
@@ -19,6 +20,7 @@ class Activities_responses extends Model
         
         'activity_id',
         'student_id',
+        
     ];
 
 

@@ -19,7 +19,7 @@
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label mt-4">Nome da disciplina</label>
             <input class="form-control" name="name" id="name" type="text"autocomplete="off">
-            <button type="submit" class="btn btn-success mt-3" id="disciplineCreateBTN">Ciar nova disciplina</button>
+            <button type="submit" class="btn btn-success mt-3 btn-sm" id="disciplineCreateBTN">Ciar nova disciplina</button>
         </div>
 
     <hr>
@@ -32,33 +32,11 @@
 
         </div>
 
-        {{-- <div > --}}
-            {{-- @foreach ($disciplines as $discipline) --}}
-
+        {{-- Essa parte foi feita em javascript --}}
         <div id="disciplineShow" class="row">
-                {{-- <div class="col-md-3" id="card">
-                    <ul id="bodyDisciplines">
-                        <div class="card mt-5" style="width: 18rem;">
-                            <div class="card-body text-center" id="card">
-                                <h5 class="card-title">{{ $discipline->name }}</h5>
-                                <h6 class="card-subtitle mb-2 text-body-secondary">Quantidade de alunos</h6>
-                                <p class="card-text">Nº atividades</p>
-                                <p>
-                                    <a href="{{ route('activities.create', $discipline->id) }}">Criar atividades</a><br>
-                                    <a href="{{ route('disciplines.edit', $discipline->id) }}" class="card-link">Gerenciar
-                                        disciplina</a>
-                                </p>
-                                <p><a href="#">Ver atividades</a></p>
-                            </div>
-                        </div>
-                    </ul>
-                </div> --}}
+
             </div>
 
-            {{-- @endforeach --}}
-            {{-- <div>
-                {{ $disciplines->links() }}
-            </div> --}}
         </div>
     </div>
 

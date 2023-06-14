@@ -44,10 +44,12 @@ Route::middleware(['authTS'])->group(function () {
     Route::controller(ActivitiesController::class)->group(function () {
         Route::get('/activities', 'index')->name('activities.index');
         Route::get('/disciplines/{id}/activities', 'showWhere')->name('activities.showWhere');
-        Route::get('/activities/show/{id}', 'show')->name('activities.show');
+        Route::get('/activities/show/resume/{id}', 'show')->name('activities.show');
     });
     Route::controller(StudentsController::class)->group(function () {
         Route::get('/students/{id}', 'info')->name('students.info');
+        Route::get('/students/activitiescheck/show/{id}', 'check')->name('students.activities.check');
+        Route::get('/activities/show/{id}', 'show')->name('students.activities.show');
     });
     Route::controller(ActivitiesResponsesController::class)->group(function(){
         Route::get('/students/disciplines/{id}/activities', 'activities')->name('students.activities');

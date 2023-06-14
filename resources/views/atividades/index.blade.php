@@ -4,7 +4,7 @@
 @section('conteudo')
     <div class="container row mt-5">
         <div class="container col-md-2">
-            <button class="btn btn-secondary ms-5" disabled>Atividades</button>
+            <button class="btn btn-secondary ms-5 " disabled>Atividades</button>
         </div>
 
         <div class="row">
@@ -22,7 +22,7 @@
                                 @if (Auth::guard('teachers')->user())
                                 <br>
                                 <div class="position-absolute bottom-0 end-0 me-2 mb-2">
-                                    <a class="btn btn-primary d-inline-flex align-items-center" href="{{route('activities.check', $item->id)}}">Ver respostas</a>
+                                    <a class="btn btn-primary btn-sm d-inline-flex align-items-center" href="{{route('activities.check', $item->id)}}">Ver respostas</a>
                                 </div>
                             @endif
                             </div>

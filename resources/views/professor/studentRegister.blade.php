@@ -25,6 +25,6 @@
         <option value="0">Desativado</option>
     </select>
 
-    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    <button type="submit" class="btn btn-primary mt-2 btn-sm">Submit</button>
   </form>
 @endsection

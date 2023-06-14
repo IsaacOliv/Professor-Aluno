@@ -14,6 +14,7 @@ class AccountController extends Controller
     //-------------------Teacher account controller
     public function loginTeacher()
     {
+        // return view('index.login');
         return view('index.login');
     }
     public function logarTeacher(Request $request)

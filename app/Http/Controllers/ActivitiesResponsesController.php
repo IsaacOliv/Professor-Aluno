@@ -82,7 +82,6 @@ class ActivitiesResponsesController extends Controller
 
         $novoValor = collect([]);
         foreach ($activities as $item) {
-
             foreach ($responses as $item2) {
                 if ($item->id == $item2->activity_id) {
                     $novoValor->push($item2->id);
@@ -91,8 +90,8 @@ class ActivitiesResponsesController extends Controller
         }
         // $visual1 = Activities::with('discipline')->where('discipline_id', $id)->whereNotIn('id', $novoValor)->paginate(8);
 
-        if (count($novoValor)>0) {
-            $visual = Activities_responses::with('activity')->where('id', $novoValor)->paginate(8);
+        if (count($novoValor) > 0) {
+            $visual = Activities_responses::with('activity')->whereIn('id', $novoValor)->paginate(8);
             return view('atividades.respostas.where', compact('user', 'visual'));
         } elseif (isNull($novoValor))
             return view('atividades.respostas.nullWhere', compact('user'));
@@ -101,7 +100,4 @@ class ActivitiesResponsesController extends Controller
     {
         dd('uma felcha atirada nao pode mais voltar');
     }
-
-
-
 }

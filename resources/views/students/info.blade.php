@@ -14,7 +14,7 @@
                 email: {{$user->email}} 
             </li>
             <li class="mt-2">
-                atividades respondidas: 
+                atividades respondidas: {{$atividades}}
             </li>
             <li class="mt-2">
                 @if ($user->status == 1)
@@ -24,7 +24,7 @@
                 @endif
             </li>
         </ul>
-      <a href="/" class="btn btn-primary">Editar</a>
+      <a href="/" class="btn btn-primary btn-sm">Editar</a>
     </div>
   </div>
 @endsection

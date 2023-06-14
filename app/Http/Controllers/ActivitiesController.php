@@ -10,6 +10,8 @@ use App\Models\Disciplines;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use function PHPUnit\Framework\isNull;
+
 class ActivitiesController extends Controller
 {
     public function index()
@@ -66,7 +68,7 @@ class ActivitiesController extends Controller
             $user = Auth::guard('students')->user();
         }
 
-        $activities = Activities::find($id);
+        $activities = Activities::findOrFail($id);
         $activities2 = Activities::with('discipline')->where('discipline_id', $id)->paginate(8);
         if ($activities) {
             return view('atividades.show', compact('user', 'activities', 'activities2'));
@@ -82,7 +84,7 @@ class ActivitiesController extends Controller
         if (Auth::guard('students')->user()) {
             $user = Auth::guard('students')->user();
         }
-        
+
         $activities = Activities::with('discipline')->where('discipline_id', $id)->paginate(8);
 
         return view('atividades.showWhere', compact('user', 'activities'));
@@ -95,31 +97,34 @@ class ActivitiesController extends Controller
             if ($data) {
                 return response()->json($data);
             }
-
         } catch (\Throwable $ex) {
 
-           return response()->json($ex->getMessage());
-
+            return response()->json($ex->getMessage());
         }
-        
     }
     public function check($id)
     {
         $user = Auth::guard('teachers')->user();
         $activities = Activities_responses::with('activity')->where('activity_id', $id)->where('check', '0')->paginate(8);
-        // dd($activities);
-        return view('professor.check', compact('user','activities'));
+        $count = Activities_responses::with('activity')->where('activity_id', $id)->where('check', '0')->count();
+        if ($count > 0) {
+            return view('professor.check', compact('user', 'activities'));
+        }
+
+        if (isNull($activities)) {
+            return view('atividades.respostas.nullWhere', compact('user'));
+        }
     }
     public function avaliate($id)
     {
         $user = Auth::guard('teachers')->user();
         $activities = Activities_responses::with('student')->findOrFail($id);
-        return view('professor.avaliate', compact('user','activities'));
+        return view('professor.avaliate', compact('user', 'activities'));
     }
     public function activitieAvaliate(ResponseActivitiesCheck $request, $id)
     {
         $responses = $request->all();
         Activities_responses::find($id)->update($responses);
-        return redirect()->back();
+        return redirect()->route('activities.check', $id);
     }
 }

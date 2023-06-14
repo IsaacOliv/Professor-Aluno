@@ -1,20 +1,20 @@
-@extends('layouts.accountLoginRegister')
+@extends('layouts.newAccount')
 
-@section('account')
-    <div class="limiter">
-        <div class="container-login100" style="background-image: url('{{ asset('images/bg-01.jpg') }}');">
-            <div class="wrap-login100 p-t-30 p-b-50">
-                <span class="login100-form-title p-b-41">
-                    Usuario
-                </span>
+@section('accountNew')
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div >
+            <div class="card-body text-center">
 
+                <h3 class="mb-5">Usuario</h3>
 
-                <a class="login100-form-btn " href="{{route('students.login')}}">Aluno</a>
-                    <a class="login100-form-btn mt-5" href="{{route('login')}}">Professor</a>
-                    </div>
+                <div class="mb-4">
+                    <a class="btn btn-primary btn-lg" href="{{ route('students.login') }}">Aluno</a>
+                </div>
 
+                <div>
+                    <a class="btn btn-primary btn-lg" href="{{ route('login') }}">Professor</a>
+                </div>
 
-                
             </div>
         </div>
     </div>
