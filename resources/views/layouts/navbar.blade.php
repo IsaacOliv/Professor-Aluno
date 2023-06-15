@@ -19,12 +19,7 @@
         <header class="p-3 mb-3 border-bottom">
             <div class="container">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                    <a href="/"
-                        class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
-                        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
-                            <use xlink:href="#bootstrap"></use>
-                        </svg>
-                    </a>
+                   
 
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                         <a class="nav-link px-2 link-secondary" aria-current="page"
@@ -32,6 +27,8 @@
                         @if (Auth::guard('students')->user())
                             <li><a href="{{ route('students.activities.open') }}"
                                     class="nav-link px-2 link-body-emphasis">Atividades enviadas</a></li>
+                            <li><a href="{{ route('disciplines.index.student') }}"
+                                    class="nav-link px-2 link-body-emphasis">Disciplinas</a></li>
                         @endif
 
                         @if (Auth::guard('teachers')->user())
@@ -43,7 +40,6 @@
                                     class="nav-link px-2 link-body-emphasis">Registrar aluno</a></li>
                             <li><a href="{{ route('teacher.show.student') }}"
                                     class="nav-link px-2 link-body-emphasis">Alunos registrados</a></li>
-                                    
                         @endif
 
 
@@ -60,8 +56,6 @@
                             @if (Auth::guard('teachers')->user())
                                 <li><a class="dropdown-item" href="{{ route('teacher.info', $user->id) }}">
                                         Detalhes da conta</a></li>
-                                <li><a class="dropdown-item" href="#">Atualizar conta</a></li>
-                                <li><a class="dropdown-item" href="#">Ver atividades</a></li>
                             @else
                                 <li><a class="dropdown-item" href="{{ route('students.info', $user->id) }}">
                                         Detalhes da conta</a></li>
@@ -103,7 +97,7 @@
 
 
 
-    <div class="container position-absolute bottom-0 start-50 translate-middle-x">
+    <div class="container">
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
             <p class="col-md-4 mb-0 text-body-secondary">© 2023 Company, Inc</p>
 

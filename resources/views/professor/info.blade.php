@@ -6,17 +6,16 @@
             Detalhes da conta <button class="btn btn-warning btn-sm" id="editarStudent">editar</button>
         </div>
         <div class="card-body">
-            <form action="" method="post">
+            <form action="{{route('teacher.update', $user->id)}}" method="post">
                 @method('PUT')
                 @csrf
                 <ul>
                     <li>
                         <label for="exampleInputPassword1" class="form-label">Nome:</label>
-                        <input type="text" id="editName" value="{{ $user->name }}" disabled>
+                        <input type="text" id="editName" name="name" value="{{ $user->name }}" disabled>
                     </li>
                     <li>
-                        <label for="exampleInputPassword1" class="form-label">Email:</label>
-                        <input type="text" id="editEmail" value="{{ $user->email }}" disabled>
+                        <label for="exampleInputPassword1" class="form-label">Email: {{ $user->email }}</label>
                     </li>
                     <li>
                         atividades criadas:{{ $atividades }}

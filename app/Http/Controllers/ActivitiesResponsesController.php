@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ActivitiesResponseUpdate;
 use App\Http\Requests\AlunoRequest;
 use App\Models\Activities;
 use App\Models\Activities_responses;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 use function PHPUnit\Framework\isNull;
 
@@ -96,8 +98,17 @@ class ActivitiesResponsesController extends Controller
         } elseif (isNull($novoValor))
             return view('atividades.respostas.nullWhere', compact('user'));
     }
-    public function update()
+    public function update(ActivitiesResponseUpdate $request, $id)
     {
-        dd('uma felcha atirada nao pode mais voltar');
+        $activitie = Activities_responses::find($id);
+        $update = $request->all();
+
+        $responses = $activitie->update(
+            $update
+        );
+        if ($responses) {
+            return redirect()->back()->with('msg', 'Atividade editada com sucesso');
+        }
+        return redirect()->back()->with('erro', 'Não foi possivel editar a atividade');
     }
 }

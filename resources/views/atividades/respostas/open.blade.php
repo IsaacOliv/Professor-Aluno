@@ -2,31 +2,35 @@
 
 
 @section('conteudo')
-    <div class="container row mt-5">
-        <div class="container col-md-2">
-            <button class="btn btn-secondary ms-5" disabled>Atividades</button>
-        </div>
-
-        <div class="row">
-
-
-            @foreach ($final as $item)
-                <div class="col-md-3" id="card">
-                    <ul>
-                        <div class="card mt-5" id="card" style="width: 18rem;">
+    <div class="album py-5">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                @foreach ($final as $item)
+                    <div class="col">
+                        <div class="card">
+                            <img src="{{ asset('images/capa-blog-diferenciar-escola-min.png') }}">
                             <div class="card-body">
-                                <h6 class="card-subtitle mb-2 text-body-secondary">Titulo: {{ $item->activity->name }}</h6>
-                                <p class="card-title">Ultimo envio: {{ date('d/m', strtotime($item->updated_at)) }}</p>
-                                <p class="card-title">Hora do envio: {{ date('H:i:s', strtotime($item->updated_at)) }}</p>
-                                <a href="{{ route('students.edit', $item->id) }}" class="card-link">Ver resposta</a>
-                                <br>
+                                <h5 class="card-subtitle mb-2 ">
+                                    {{ $item->activity->discipline->name }}</h5>
+                                <p class="card-text">Titulo: {{ $item->activity->name }}</p>
+                                <p class="card-text">O aprendiz é um mestre em formação</p>
+                                <div class="d-flex justify-content-between align-items-center">
+
+                                    <div class="btn-group">
+                                        <a href="{{ route('students.edit', $item->id) }}"
+                                            class="btn btn-sm btn-outline-secondary">Ver resposta</a>
+
+                                    </div>
+                                    <small class="text-body-secondary">
+                                        {{ date('H:i', strtotime($item->updated_at)) }}</small>
+                                </div>
                             </div>
-                    </ul>
-                </div>
-            @endforeach
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
-        <div>
+        <div class="container mt-3">
             {{ $final->links() }}
         </div>
-    </div>
-@endsection
+    @endsection

@@ -38,4 +38,18 @@ class StudentsController extends Controller
         }
         dd('algo deu errado');
     }
+    public function showDisciplines()
+    {
+
+        if (Auth::guard('teachers')->user()) {
+            $user = Auth::guard('teachers')->user();
+        }
+        if (Auth::guard('students')->user()) {
+            $user = Auth::guard('students')->user();
+        }
+        $disciplines = Disciplines::paginate(8);
+
+        
+        return view('students.disciplines', compact('user','disciplines'));
+    }
 }

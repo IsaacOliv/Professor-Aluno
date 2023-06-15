@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Hash;
 
 class TeachersController extends Controller
 {
-    public function info(Request $request, $id)
+    public function info($id)
     {
         
         $user = Auth::guard('teachers')->user();
@@ -23,6 +23,19 @@ class TeachersController extends Controller
         $teacher = Teachers::find($id);
         $atividades = Activities::where('teatcher_id', $user->id)->count();
         return view('professor.info', compact('user', 'teacher', 'atividades'));
+    }
+    public function update(Request $request, $id)
+    {
+        $teacher = Teachers::find($id);
+        $update = $teacher->update([
+            'name' => $request->name,
+        ]);
+
+        if ($update) {
+            return redirect()->back()->with('msg', 'Nome alterado com sucesso');
+        }
+        return redirect()->back()->with('erro', 'Não foi possivel alterar o nome');
+        
     }
     //Criar conta do aluno
     public function studentRegister()

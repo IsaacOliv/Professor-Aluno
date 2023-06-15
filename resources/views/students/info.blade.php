@@ -24,7 +24,6 @@
                 @endif
             </li>
         </ul>
-      <a href="/" class="btn btn-primary btn-sm">Editar</a>
     </div>
   </div>
 @endsection

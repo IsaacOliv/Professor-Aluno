@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class DisciplinesController extends Controller
 {
-    public function index(Disciplines $disciplines)
+    public function index()
     {
         if (Auth::guard('teachers')->user()) {
             $user = Auth::guard('teachers')->user();

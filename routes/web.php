@@ -50,6 +50,7 @@ Route::middleware(['authTS'])->group(function () {
         Route::get('/students/{id}', 'info')->name('students.info');
         Route::get('/students/activitiescheck/show/{id}', 'check')->name('students.activities.check');
         Route::get('/activities/show/{id}', 'show')->name('students.activities.show');
+        Route::get('/disciplines/show', 'showDisciplines')->name('disciplines.index.student');
     });
     Route::controller(ActivitiesResponsesController::class)->group(function(){
         Route::get('/students/disciplines/{id}/activities', 'activities')->name('students.activities');
@@ -77,6 +78,7 @@ Route::middleware(['teachers'])->group(function () {
     });
     Route::controller(TeachersController::class)->group(function () {
         Route::get('/teacher/{id}', 'info')->name('teacher.info');
+        Route::put('/teacher/{id}/update', 'update')->name('teacher.update');
         Route::get('/teatcher/student-register', 'studentRegister')->name('create.student');
         Route::post('/teatcher/student-register', 'studentStore')->name('store.student');
         Route::get('/teacher/show/students', 'studentsShow')->name('teacher.show.student');

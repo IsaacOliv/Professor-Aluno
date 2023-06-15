@@ -8,8 +8,10 @@
         @endforeach
     @endif
     {{-- enctype="multipart/form-data" --}}
+    
     <form action="{{ route('students.store') }}" method="post" enctype="multipart/form-data">
         @csrf
+       
         <div class="mb-3 mt-3">
             <label for="exampleInputPassword1" class="form-label">Titulo</label>
             <label for="exampleInputPassword1" class="form-control">{{ $activities->name }}</label>
